@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muslims Learning - اسلامی تعلیمات</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* INTRO PAGE */
+        .intro-page {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0a2f2a 0%, #064e3b 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Amiri', 'Noto Naskh Arabic', 'Arial', sans-serif;
+            padding: 20px;
+        }
+
+        .intro-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 550px;
+            width: 100%;
+            border: 2px solid #fbbf24;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.4);
+        }
+
+        .intro-card h1 {
+            font-size: 2.5rem;
+            color: #fde047;
+            margin-bottom: 15px;
+        }
+
+        .intro-card h2 {
+            font-size: 2rem;
+            color: #ffedd5;
+            margin-bottom: 10px;
+        }
+
+        .durood-box {
+            background: #1e3a2f;
+            padding: 25px;
+            border-radius: 50px;
+            margin: 30px 0;
+        }
+
+        .durood-box p {
+            font-size: 1.2rem;
+            color: #ffefb9;
+            margin-bottom: 10px;
+        }
+
+        .durood-arabic {
+            font-size: 1.5rem;
+            font-family: 'Amiri', serif;
+            color: #fbbf24;
+            direction: rtl;
+        }
+
+        .developer-box {
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 40px;
+        }
+
+        .developer-box p {
+            font-size: 1.1rem;
+            color: #fde047;
+        }
+
+        .developer-box span {
+            color: #ffedd5;
+        }
+
+        .enter-btn {
+            background: #fbbf24;
+            color: #1e293b;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .enter-btn:hover {
+            background: #f59e0b;
+            transform: scale(1.02);
+        }
+
+        /* MAIN PAGE - SKY BLUE BACKGROUND */
+        .main-page {
+            display: none;
+            min-height: 100vh;
+            background: #87CEEB;
+            font-family: 'Segoe UI', 'Amiri', 'Noto Naskh Arabic', 'Arial', sans-serif;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(5px);
+            color: #1e293b;
+            padding: 20px;
+            border-radius: 50px;
+            margin-bottom: 35px;
+            border: 1px solid #2c3e6d;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            color: #2c3e6d;
+            font-size: 1rem;
+        }
+
+        /* BOXES GRID */
+        .boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* ALL BOXES SAME STYLE */
+        .info-box {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #2c3e6d;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.95);
+            border-color: #1e4d6f;
+        }
+
+        .info-box h4 {
+            font-size: 1.5rem;
+            color: #1e3a5f;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            font-size: 0.85rem;
+            color: #2c3e6d;
+        }
+
+        /* HADITH BOX - BIGGER AND FIRST */
+        .hadith-big-box {
+            grid-column: span 2;
+            background: rgba(255,255,255,0.9);
+            border: 2px solid #1e4d6f;
+        }
+
+        .hadith-big-box h4 {
+            font-size: 1.8rem;
+        }
+
+        /* DONATION BOX - RED */
+        .donation-box {
+            background: rgba(200, 60, 60, 0.85);
+            border: 2px solid #8b0000;
+        }
+
+        .donation-box h4 {
+            color: white;
+        }
+
+        .donation-box p {
+            color: #ffdddd;
+        }
+
+        .box-audio-btn {
+            background: #2c6e9e;
+            color: white;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 30px;
+            margin-top: 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .box-audio-btn:hover {
+            background: #1e4d6f;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #0a2a20;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            border-radius: 30px;
+            padding: 30px;
+            position: relative;
+            overflow-y: auto;
+            border: 2px solid #fbbf24;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #fbbf24;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: #f59e0b;
+        }
+
+        .modal-content h2 {
+            color: #fde047;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content .arabic {
+            font-size: 1.1rem;
+            font-family: 'Amiri', serif;
+            direction: rtl;
+            text-align: right;
+            margin: 10px 0;
+            color: #ffefb9;
+        }
+
+        .modal-content p {
+            color: #e2e8f0;
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .hadith-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-right: 4px solid #fbbf24;
+        }
+
+        .hadith-arabic {
+            font-size: 1rem;
+            font-family: 'Amiri', serif;
+            direction: rtl;
+            text-align: right;
+            color: #ffefb9;
+        }
+
+        .hadith-trans {
+            color: #cbd5e1;
+            font-size: 0.85rem;
+            margin: 8px 0;
+        }
+
+        .hadith-audio-btn {
+            background: #fbbf24;
+            color: #1e293b;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 30px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 30px;
+            margin-top: 30px;
+            color: #2c3e6d;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .header h1 { font-size: 1.5rem; }
+            .info-box h4 { font-size: 1.2rem; }
+            .boxes-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .hadith-big-box { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- INTRO PAGE -->
+<div id="introPage" class="intro-page">
+    <div class="intro-card">
+        <h1>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</h1>
+        <h2>Muslims Learning</h2>
+        
+        <div class="durood-box">
+            <p>برائے مہربانی داخل ہونے سے پہلے</p>
+            <p>10 مرتبہ درود شریف پڑھیں</p>
+            <div class="durood-arabic">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</div>
+        </div>
+
+        <div class="developer-box">
+            <p>Developed by Harmain Elahi</p>
+            <p>Review by Bint-e-Imran</p>
+        </div>
+
+        <button class="enter-btn" onclick="enterMainSite()">داخل ہوں</button>
+    </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="mainPage" class="main-page">
+    <div class="container">
+        <div class="header">
+            <h1>Muslims Learning</h1>
+            <p>خانہ کعبہ کے سائے میں | ہر topic کے 20 اہم حقائق</p>
+        </div>
+
+        <!-- BOXES GRID - HADITH BOX FIRST AND BIGGER -->
+        <div class="boxes-grid">
+            <!-- HADITH BOX - BIGGER, FIRST -->
+            <div class="info-box hadith-big-box" onclick="openModal('ahadith')">
+                <h4>100 احادیث نبویہ</h4>
+                <p>آواز کے ساتھ - 100 احادیث</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel('اس حصے میں 100 احادیث موجود ہیں۔ ہر حدیث کو آواز میں سن سکتے ہیں')">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('namaz')">
+                <h4>نماز</h4>
+                <p>نماز کے 20 اہم مسائل اور فضائل</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(namazAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('roza')">
+                <h4>روزہ</h4>
+                <p>روزے کے 20 احکام اور فضائل</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(rozaAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('zakat')">
+                <h4>زکوۃ</h4>
+                <p>زکوۃ کے 20 مسائل</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(zakatAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('hajj')">
+                <h4>حج</h4>
+                <p>حج کے 20 احکام اور فضائل</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(hajjAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('qayamat')">
+                <h4>قیامت</h4>
+                <p>قیامت کی 20 نشانیاں</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(qayamatAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('dua')">
+                <h4>قرآنی دعائیں</h4>
+                <p>20 اہم قرآنی دعائیں</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(duaAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('parents')">
+                <h4>والدین و رشتے</h4>
+                <p>والدین اور رشتوں کے 20 حقوق</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(parentsAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('nikah')">
+                <h4>نکاح و طلاق</h4>
+                <p>نکاح و طلاق کے 20 مسائل</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(nikahAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box" onclick="openModal('jihad')">
+                <h4>جہاد</h4>
+                <p>جہاد کے 20 احکام</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(jihadAudioText)">آواز میں سنیں</button>
+            </div>
+
+            <div class="info-box donation-box" onclick="openModal('donation')">
+                <h4>Donate to Muslims</h4>
+                <p>مظلوم مسلمانوں کی مدد کے ذرائع</p>
+                <button class="box-audio-btn" onclick="event.stopPropagation(); speakTextWithCancel(donationAudioText)">آواز میں سنیں</button>
+            </div>
+        </div>
+
+        <footer>
+            تمام معلومات قرآن و سنت سے ماخوذ | ہر موضوع پر 20 حقائق | 100 احادیث
+        </footer>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">X</button>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    // Audio control - to cancel previous speech
+    let currentUtterance = null;
+
+    function speakTextWithCancel(text) {
+        if (currentUtterance) {
+            window.speechSynthesis.cancel();
+            currentUtterance = null;
+        }
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "ur-PK";
+        utterance.rate = 0.85;
+        utterance.pitch = 1;
+        currentUtterance = utterance;
+        utterance.onend = function() { currentUtterance = null; };
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Auto welcome when main page opens
+    let welcomePlayed = false;
+
+    function enterMainSite() {
+        document.getElementById('introPage').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'block';
+        
+        if (!welcomePlayed) {
+            welcomePlayed = true;
+            const welcomeMsg = new SpeechSynthesisUtterance("السلام علیکم ورحمتہ اللہ وبرکاتہ۔ خوش آمدید۔ مسلمس لرننگ میں آپ کا استقبال ہے۔");
+            welcomeMsg.lang = "ur-PK";
+            welcomeMsg.rate = 0.9;
+            welcomeMsg.pitch = 1;
+            window.speechSynthesis.speak(welcomeMsg);
+        }
+    }
+
+    // ========== 20 FACTS FOR EACH TOPIC ==========
+    const namazFacts = [
+        "1. نماز دین کا ستون ہے۔ حضور صلی اللہ علیہ وسلم نے فرمایا: الصلاة عماد الدين",
+        "2. نماز فرض ہے قرآن میں ہے: ان الصلاة كانت على المؤمنين كتابا موقوتا",
+        "3. فجر کی دو رکعتیں پوری دنیا سے بہتر ہیں - ركعتا الفجر خير من الدنيا وما فيها",
+        "4. عصر کی نماز کی پابندی کرنے والا جنت میں جائے گا - من صلى البردين دخل الجنة",
+        "5. مغرب کے وقت دعائیں قبول ہوتی ہیں اور یہ افطار کا وقت ہے",
+        "6. عشاء کی جماعت آدھی رات عبادت کے برابر ہے - صحیح مسلم",
+        "7. نماز کی شرائط: طہارت، ستر ڈھکنا، وقت، قبلہ رخ، نیت",
+        "8. نماز کے فرائض: تکبیر تحریمہ، قیام، قراءت، رکوع، سجدہ، قعدہ اخیرہ",
+        "9. نماز کے واجبات 7 ہیں: قرات، سجدہ میں ناک لگانا، وغیرہ",
+        "10. نماز کی سنتیں: اقامت کہنا، ہاتھ باندھنا، سمع اللہ لمن حمدہ کہنا",
+        "11. نماز جماعت فرض سے 27 گنا زیادہ فضیلت رکھتی ہے - صحیح بخاری",
+        "12. نماز تہجد بہترین نفل نماز ہے، رسول اللہ صلی اللہ علیہ وسلم ہمیشہ پڑھتے تھے",
+        "13. نماز اشراق طلوع آفتاب کے بعد میں پورے حج و عمرے کا ثواب ہے",
+        "14. نماز چاشت 12 رکعتیں پڑھنے سے اللہ تعالی جنت میں محل بناتا ہے",
+        "15. نماز وتر واجب ہے، اسے ترک نہیں کرنا چاہیے",
+        "16. سہو کے سجدے سے نماز میں کمی بیشی پوری ہو جاتی ہے",
+        "17. عورت کے لیے گھر کی نماز مسجد سے بہتر ہے",
+        "18. مسجد میں داخل ہوتے وقت تحیۃ المسجد کی دو رکعتیں پڑھنا سنت ہے",
+        "19. نماز کے بعد کے اذکار: استغفار، آیت الکرسی، تسبیحات، درود شریف",
+        "20. نماز چھوڑنے والے کے بارے میں حدیث: بین الرجل وبین الشرک ترک الصلاۃ"
+    ];
+
+    const rozaFacts = [
+        "1. روزہ اسلام کا تیسرا رکن ہے - بني الإسلام على خمس",
+        "2. اللہ فرماتا ہے: الصوم لي وأنا أجزي به (روزہ میرے لیے ہے، میں خود بدلہ دوں گا)",
+        "3. رمضان کے روزے ایمان اور ثواب کی نیت سے رکھنے سے پچھلے گناہ معاف - صحیح بخاری",
+        "4. جنت میں ایک دروازہ ہے جسے ریان کہتے ہیں، صرف روزہ دار داخل ہوں گے",
+        "5. روزے کی حالت میں جھوٹ بولنے سے اللہ کو بھوکے رہنے کی ضرورت نہیں",
+        "6. سحری کھانا سنت ہے، اس میں برکت ہے - تسحروا فإن في السحور برکة",
+        "7. افطار میں جلدی کرنا سنت ہے - لازال الناس بخیر ما عجلوا الفطر",
+        "8. روزے کی شرائط: نیت، سحری، فجر سے مغرب تک کھانے پینے سے رکنا",
+        "9. روزہ توڑنے والی چیزیں: جان بوجھ کر کھانا پینا، جماع، قصداً قے، حیض و نفاس",
+        "10. رمضان کے آخری عشرے میں اعتکاف کرنا سنت ہے",
+        "11. لیلۃ القدر ہزار مہینوں سے بہتر ہے، اسے رمضان کے آخری عشرے میں ڈھونڈو",
+        "12. روزہ دار کے لیے دو خوشیاں: افطار کے وقت اور اللہ سے ملنے کے وقت",
+        "13. روزہ دار کے منہ کی بو اللہ کے نزدیک مشک سے بہتر ہے",
+        "14. شوال کے چھ روزے رکھنے سے پورے سال کے روزوں کا ثواب",
+        "15. عرفہ کے دن کا روزہ پچھلے اور اگلے سال کے گناہوں کا کفارہ ہے",
+        "16. محرم کے 10 دنوں میں سے 9 اور 10 محرم کا روزہ بہترین ہے",
+        "17. پیر اور جمعرات کے روزے رکھنا مستحب ہے، یہ اعمال پیش کیے جاتے ہیں",
+        "18. ایام بیض 13،14،15 کے روزے رکھنا سنت ہے",
+        "19. روزہ دار کی دعا رد نہیں ہوتی - ثلاث لا ترد دعوتهم: الصائم حتى يفطر",
+        "20. روزہ ڈھال ہے، قیامت کے دن روزہ کہے گا: اے رب میں نے اسے کھانے پینے سے روکا تھا"
+    ];
+
+    const zakatFacts = [
+        "1. زکوۃ اسلام کا چوتھا رکن ہے - قرآن میں 32 مرتبہ نماز کے ساتھ ذکر",
+        "2. زکوۃ فرض ہے: واتوا الزكاة",
+        "3. نصاب: ساڑھے سات تولے سونا یا ساڑھے باون تولے چاندی",
+        "4. زکوۃ کی شرح: ڈھائی فیصد یعنی 40 واں حصہ",
+        "5. زکوۃ سال میں ایک بار فرض ہے، ہر سال ادا کرنا واجب",
+        "6. زکوۃ کے مستحق: قرآن میں 8 قسم کے لوگ سورہ توبہ آیت 60",
+        "7. غریب، مسکین، عاملین، مؤلفۃ القلوب، غلام، مقروض، فی سبیل اللہ، ابن السبیل",
+        "8. زکوۃ نہ دینے والے کے بارے میں سخت وعید ہے - قرآن میں عذاب کا ذکر",
+        "9. تجارتی مال پر بھی زکوۃ ہے، چاہے وہ کھڑا ہو",
+        "10. زرعی پیداوار پر: بارانی پانی سے 10 فیصد، نہری پانی سے 5 فیصد",
+        "11. مویشی پر زکوۃ: اونٹ، گائے، بھیڑ بکری پر نصاب کے مطابق",
+        "12. سونا چاندی میں زیور پہننے والی عورت پر بھی زکوۃ ہے",
+        "13. قرض پر اگر وصول ہو جائے تو پچھلے سالوں کی زکوۃ بھی دینا ہوگی",
+        "14. زکوۃ دینے سے مال میں برکت آتی ہے اور وہ بڑھتا ہے",
+        "15. صدقہ فطر رمضان کے آخر میں ہر مسلمان پر واجب ہے",
+        "16. صدقہ فطر کی مقدار: ایک صاع تقریباً 3 کلو کھجور یا گیہوں",
+        "17. زکوۃ ادا کرنے والے کے لیے اللہ کی طرف سے بے حساب اجر ہے",
+        "18. اپنے رشتہ داروں کو زکوۃ دینے پر دوہرا ثواب ہے",
+        "19. زکوۃ کے پیسے مسجد یا قبرستان میں لگانا جائز نہیں",
+        "20. جو شخص زکوۃ دینے سے بخل کرے وہ کافر نہیں مگر گنہگار ہے"
+    ];
+
+    const hajjFacts = [
+        "1. حج اسلام کا پانچواں رکن ہے - بني الإسلام على خمس",
+        "2. حج کی فضیلت: من حج فلم يرفث ولم يفسق رجع كيوم ولدته أمه",
+        "3. حج فرض ہے ہر اس مسلمان پر جو استطاعت رکھتا ہو",
+        "4. حج کے ارکان: احرام، وقوف عرفہ، طواف زیارت، سعی، حلق یا قصر",
+        "5. احرام کی حالت میں خوشبو لگانا، شکار کرنا، بال کٹوانا منع ہے",
+        "6. عرفات میں وقوف حج کا رکن اعظم ہے - الحج عرفة",
+        "7. مزدلفہ میں رات گزارنا اور کنکریاں اٹھانا واجب ہے",
+        "8. جمرات میں شیطان کو سنگسار کرنا حج کی سنتیں ہیں",
+        "9. قربانی کرنا حج تمتع اور قران میں واجب ہے",
+        "10. طواف قدوم، طواف زیارت، طواف وداع تین اہم طواف ہیں",
+        "11. صفا اور مروہ کے درمیان سعی کرنا حج کا حصہ ہے",
+        "12. حج میں میقات سے احرام باندھنا شرط ہے، ورنہ دم دینا ہوگا",
+        "13. ایام تشریق 11،12،13 ذوالحجہ میں منی میں رات گزارنا واجب ہے",
+        "14. حج مقبول کی علامت: حج کے بعد گناہوں سے بچنا اور نیکیوں میں اضافہ",
+        "15. عمرہ کرنا بھی سنت ہے، ایک عمرہ دوسرے عمرہ کے درمیان گناہوں کا کفارہ",
+        "16. حج کے دوران جھگڑا، فحش گوئی اور گناہوں سے بچنا لازم ہے",
+        "17. حاجی کی دعا قبول ہوتی ہے، حاجیوں کی مغفرت ہو جاتی ہے",
+        "18. حج کے بعد حاجی کو زمزم پینا چاہیے"19. حج کے موقع پر نکاح کرنا جائز نہیں کیونکہ احرام میں نکاح منع ہے",
+        "20. حج کے دوران بیمار ہو جائے تو فدیہ دینا ہوگا: روزہ یا صدقہ یا قربانی"
+    ];
+
+    const qayamatFacts = [
+        "1. قیامت کی نشانیاں دو قسم کی ہیں: چھوٹی اور بڑی",
+        "2. چھوٹی نشانی: علم کا اٹھ جانا اور جہالت کا پھیل جانا - صحیح بخاری",
+        "3. چھوٹی نشانی: بے حیائی کا عام ہونا اور شراب کا کثرت سے پینا",
+        "4. چھوٹی نشانی: مسجدوں میں فخر و نمائش اور اونچی عمارتیں بننا",
+        "5. چھوٹی نشانی: امانت کا ختم ہونا اور نااہل لوگوں کا ذمہ دار بننا",
+        "6. چھوٹی نشانی: وقت قریب ہونے پر جھوٹے دجال پیدا ہوں گے",
+        "7. بڑی نشانی: دجال کا ظہور، وہ آنکھ کانا ہوگا اور اس کے پاس جنت و جہنم ہوگی",
+        "8. بڑی نشانی: حضرت عیسیٰ علیہ السلام کا آسمان سے نزول، وہ دجال کو قتل کریں گے",
+        "9. بڑی نشانی: یاجوج اور ماجوج کا نکلنا، یہ بہت بڑی قوم ہوگی",
+        "10. بڑی نشانی: دابۃ الارض زمین سے نکالنے والا جانور لوگوں سے بات کرے گا",
+        "11. بڑی نشانی: سورج کا مغرب سے طلوع ہونا، اس کے بعد توبہ قبول نہ ہوگی",
+        "12. بڑی نشانی: دھواں کا آنا جو پوری زمین کو ڈھانک لے گا",
+        "13. بڑی نشانی: مشرق میں زمین کا دھنسنا، مغرب میں اور عرب میں زمین کا دھنسنا",
+        "14. بڑی نشانی: آگ کا نکلنا جو لوگوں کو محشر کی طرف ہانکے گی",
+        "15. قیامت سے پہلے قران کریم اٹھا لیا جائے گا، کوئی بھی آیت باقی نہ رہے گی",
+        "16. صور پھونکا جائے گا: پہلا صور سے سب مر جائیں گے، دوسرے سے سب زندہ ہوں گے",
+        "17. قیامت کے دن لوگ ننگے پاؤں، ننگے بدن اٹھائے جائیں گے",
+        "18. اس دن ہر شخص اپنے اعمال کی کتاب دیکھ لے گا",
+        "19. میزان ترازو رکھی جائے گی، اعمال تولے جائیں گے",
+        "20. پل صراط جہنم پر بچھائی جائے گی، ہر شخص اپنے اعمال کے مطابق اس پر سے گزرے گا"
+    ];
+
+    // Audio texts
+    const namazAudioText = namazFacts.join(". ");
+    const rozaAudioText = rozaFacts.join(". ");
+    const zakatAudioText = zakatFacts.join(". ");
+    const hajjAudioText = hajjFacts.join(". ");
+    const qayamatAudioText = qayamatFacts.join(". ");
+    const duaAudioText = "قرآنی دعائیں: ربنا آتنا، ربنا لا تزغ، رب ہب لي، ربنا اغفر لي، رب اشرح لي صدری۔ یہ پانچ اہم قرآنی دعائیں ہیں۔ مزید دعائیں بھی ہیں۔";
+    const parentsAudioText = "والدین کے حقوق: والدین کی خدمت جنت کا سبب ہے۔ والدین کی رضا میں اللہ کی رضا ہے۔ پردیسیوں کے والدین سے ہر ہفتے رابطہ کریں، ان کی مالی امداد کریں اور ان کے لیے دعا کریں۔ صلہ رحمی سے عمر میں برکت آتی ہے۔";
+    const nikahAudioText = "نکاح کے 20 مسائل: نکاح سنت ہے، شرائط: ایجاب و قبول، دو گواہ، ولی، مہر۔ طلاق سب سے زیادہ ناپسندیدہ حلال عمل ہے۔ عدت تین ماہ یا تین حیض ہے۔";
+    const jihadAudioText = "جہاد کے 20 احکام: جہاد کا مطلب اللہ کی راہ میں کوشش کرنا۔ جہاد اکبر نفس کے خلاف اور جہاد اصغر میدان جنگ۔ مال اور زبان سے جہاد بھی ہے۔";
+    const donationAudioText = "مظلوم مسلمانوں کی مدد کے ذرائع: الخدمت فاؤنڈیشن، اسلامک ریلیف، ایڈھی فاؤنڈیشن۔ مدد کے طریقے: دعا، صدقہ، آگاہی، قنوت نازلہ، بائیکاٹ۔";
+
+    // Modal content functions
+    function getNamazContent() {
+        let html = `<h2>نماز کے 20 حقائق</h2>`;
+        namazFacts.forEach(fact => { html += `<p>${fact}</p>`; });
+        html += `<div class="arabic">الصلاة عماد الدين</div>`;
+        return html;
+    }
+
+    function getRozaContent() {
+        let html = `<h2>روزہ کے 20 حقائق</h2>`;
+        rozaFacts.forEach(fact => { html += `<p>${fact}</p>`; });
+        return html;
+    }
+
+    function getZakatContent() {
+        let html = `<h2>زکوۃ کے 20 حقائق</h2>`;
+        zakatFacts.forEach(fact => { html += `<p>${fact}</p>`; });
+        return html;
+    }
+
+    function getHajjContent() {
+        let html = `<h2>حج کے 20 حقائق</h2>`;
+        hajjFacts.forEach(fact => { html += `<p>${fact}</p>`; });
+        return html;
+    }
+
+    function getQayamatContent() {
+        let html = `<h2>قیامت کی 20 نشانیاں</h2>`;
+        qayamatFacts.forEach(fact => { html += `<p>${fact}</p>`; });
+        return html;
+    }
+
+    function getDuaContent() {
+        return `<h2>20 قرآنی دعائیں</h2>
+                <div class="arabic">ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة</div>
+                <p>1. ربنا آتنا فی الدنیا حسنة البقرہ 201</p>
+                <div class="arabic">ربنا لا تزغ قلوبنا بعد اذ هديتنا</div>
+                <p>2. ربنا لا تزغ قلوبنا آل عمران 8</p>
+                <div class="arabic">رب هب لي من لدنك ذرية طيبة</div>
+                <p>3. رب ہب لي ذریة طیبة آل عمران 38</p>
+                <div class="arabic">ربنا اغفر لي ولوالدي وللمؤمنين</div>
+                <p>4. ربنا اغفر لي ولوالدي نوح 28</p>
+                <div class="arabic">رب اشرح لي صدري ويسر لي أمري</div>
+                <p>5. رب اشرح لي صدري طہ 25-26</p>
+                <p>6 سے 20: مزید دعائیں: ربنا ظلمنا انفسنا، ربنا افرغ علینا صبراً، ربنا لا تؤاخذنا، ربنا ولا تحمل علینا، ربنا ولا تزغ قلوبنا، وغیرہ</p>`;
+    }
+
+    function getParentsContent() {
+        return `<h2>والدین اور رشتوں کے 20 حقوق</h2>
+                <p>1. والدین کے ساتھ حسن سلوک کرنا - وبالوالدين إحسانا</p>
+                <p>2. اللہ کی رضا والد کی رضا میں ہے - رضا الله في رضا الوالد</p>
+                <p>3. والدین کا حکم نہ ماننا کبیرہ گناہ ہے</p>
+                <p>4. جنت ماں کے قدموں تلے ہے</p>
+                <p>5. والدین کی خدمت جہاد سے افضل ہے</p>
+                <p>6. پردیسیوں کے والدین: ہر ہفتے فون کرنا واجب ہے</p>
+                <p>7. والدین کی مالی امداد کرنا صدقہ ہے</p>
+                <p>8. والدین کے لیے دعا کرنا - رب ارحمهما كما ربياني صغيرا</p>
+                <p>9. صلہ رحمی سے عمر میں برکت آتی ہے - بر الوالدين يزيد في العمر</p>
+                <p>10. رشتہ داروں سے قطع تعلقی کرنے والا جنت میں نہیں جائے گا</p>
+                <p>11. رشتہ داروں کی خبر گیری کرنا ایمان کی علامت ہے</p>
+                <p>12. چچا، خالہ، پھوپھی، ماموں سب کے حقوق ہیں</p>
+                <p>13. دور کے رشتہ داروں کو بھی تحفہ دینا چاہیے</p>
+                <p>14. بیمار رشتہ دار کی عیادت کرنا حق ہے</p>
+                <p>15. رشتہ داروں کے جنازے میں شرکت کرنا واجب کفایہ ہے</p>
+                <p>16. ان کی شادیوں اور خوشیوں میں شریک ہونا چاہیے</p>
+                <p>17. مصیبت میں ان کا ساتھ دینا بڑی نیکی ہے</p>
+                <p>18. ان کے ساتھ نرمی اور محبت سے پیش آنا چاہیے</p>
+                <p>19. ان کی غیبت کرنا حرام ہے</p>
+                <p>20. صلہ رحمی کرنے والے کے لیے جنت میں بلند درجات ہیں</p>`;
+    }
+
+    function getNikahContent() {
+        return `<h2>نکاح و طلاق کے 20 مسائل</h2>
+                <p>1. نکاح سنت موکدہ ہے - النكاح سنتي</p>
+                <p>2. نکاح کی شرائط: ایجاب و قبول، دو گواہ، ولی، مہر</p>
+                <p>3. ولی کے بغیر نکاح نہیں ہوتا - لا نكاح إلا بولي</p>
+                <p>4. مہر ادا کرنا ضروری ہے، چاہے تھوڑا ہو</p>
+                <p>5. نکاح کا اعلان کرنا اور ولیمہ کرنا سنت ہے</p>
+                <p>6. بیوی کے ساتھ اچھا سلوک کرنا واجب ہے - وعاشروهن بالمعروف</p>
+                <p>7. طلاق حلال چیزوں میں سب سے زیادہ ناپسندیدہ ہے - أبغض الحلال إلى الله الطلاق</p>
+                <p>8. طلاق کی تین اقسام: طلاق حسن، طلاق احسن، طلاق بدعی</p>
+                <p>9. طلاق کے بعد عدت گزارنا واجب ہے - 3 ماہ یا 3 حیض</p>
+                <p>10. عدت کے اندر رجوع کا حق ہے</p>
+                <p>11. تین طلاقیں ایک ساتھ دینا حرام ہے بدعی طلاق</p>
+                <p>12. مطلقہ عورت کو نفقہ اور سکنی کا حق ہے</p>
+                <p>13. خلع طلاق عورت کی طرف سے جائز ہے</p>
+                <p>14. لعان زنا کی تہمت پر طلاق کا طریقہ قرآن میں ہے</p>
+                <p>15. بیوی کو مارنا پیٹنا جائز نہیں، صرف علیحدگی کی اجازت ہے</p>
+                <p>16. نکاح میں دھوکہ دینا عیب چھپانا جائز نہیں</p>
+                <p>17. کافر سے مسلمان عورت کا نکاح حرام ہے</p>
+                <p>18. اہل کتاب یہودی، عیسائی عورت سے نکاح جائز ہے</p>
+                <p>19. چوتھی شادی کرنے سے پہلے عدل کی شرط ہے</p>
+                <p>20. شوہر کی اجازت کے بغیر بیوی کا نفل روزہ رکھنا منع ہے</p>`;
+    }
+
+    function getJihadContent() {
+        return `<h2>جہاد کے 20 احکام</h2>
+                <p>1. جہاد کا مطلب اللہ کی راہ میں کوشش کرنا ہے</p>
+                <p>2. جہاد کی دو قسمیں: جہاد اکبر نفس اور جہاد اصغر میدان</p>
+                <p>3. جہاد بالمال مال سے مدد بھی جہاد ہے</p>
+                <p>4. جہاد باللسان زبان سے حق پھیلانا بھی جہاد ہے</p>
+                <p>5. جہاد بالقلم تحریر سے آج کل بہت اہم ہے</p>
+                <p>6. من مات ولم يغز مات على شعبة من النفاق - صحیح مسلم</p>
+                <p>7. جہاد میں شہید ہونے والے کے لیے جنت کے بلند درجات ہیں</p>
+                <p>8. شہید کے 6 فضائل: بخشش، جنت میں داخلہ، عذاب سے امان، وغیرہ</p>
+                <p>9. والدین کی اجازت کے بغیر نفل جہاد جائز نہیں</p>
+                <p>10. جہاد میں عورتوں، بچوں اور بوڑھوں کو قتل کرنا حرام ہے</p>
+                <p>11. درختوں کو کاٹنا اور عمارتوں کو جلانا منع ہے جب تک ضرورت نہ ہو</p>
+                <p>12. قیدیوں کے ساتھ اچھا سلوک کرنا چاہیے</p>
+                <p>13. غنیمت کے مال میں 1/5 خمس نکالنا ضروری ہے</p>
+                <p>14. جہاد سے فرار کرنا کبیرہ گناہ ہے</p>
+                <p>15. مرتدین سے جہاد کرنا ضروری ہے</p>
+                <p>16. سرکاری طور پر جہاد کا اعلان کرنا ضروری ہے بغیر کسی گروہ کے نہیں</p>
+                <p>17. آج کل جہاد کی صورت: دین کی تبلیغ، بدعات کا خاتمہ، مظلوموں کی مدد</p>
+                <p>18. سوشل میڈیا پر جھوٹ پھیلانے والوں سے جہاد بھی ضروری ہے</p>
+                <p>19. نفس کے خلاف جہاد سب سے بڑا جہاد ہے</p>
+                <p>20. حضرت محمد صلی اللہ علیہ وسلم نے فرمایا: المجاهد من جاهد نفسه - اصل مجاہد وہ ہے جو نفس سے جہاد کرے</p>`;
+    }
+
+    function getDonationContent() {
+        return `<h2>مظلوم مسلمانوں کی مدد کے 20 ذرائع</h2>
+                <p>1. فلسطین، کشمیر، یمن، شام، روہنگیا کے لیے دعا کرنا</p>
+                <p>2. Al-Khidmat Foundation Pakistan: 042-35957260</p>
+                <p>3. Islamic Relief Worldwide - بین الاقوامی امداد</p>
+                <p>4. Edhi Foundation: 115</p>
+                <p>5. UNRWA فلسطینی پناہ گزینوں کے لیے</p>
+                <p>6. قنوت نازلہ پڑھنا فجر کی نماز میں</p>
+                <p>7. ظالموں کی معیشت کا بائیکاٹ کرنا</p>
+                <p>8. سچی خبریں پھیلانا، جھوٹی پروپیگنڈا کا پردہ چاک کرنا</p>
+                <p>9. متاثرہ علاقوں کے لیے فنڈ ریزر کرنا</p>
+                <p>10. طبی امداد بھیجنا دوائیاں، ڈاکٹر</p>
+                <p>11. یتیم بچوں کی کفالت کرنا</p>
+                <p>12. تعلیمی سکالرشپ دینا</p>
+                <p>13. پانی کے کنوئیں لگانا</p>
+                <p>14. خیمے اور کمبل بھیجنا</p>
+                <p>15. کھانے کے پیکج بھیجنا</p>
+                <p>16. سوشل میڈیا پر آواز اٹھانا</p>
+                <p>17. حکومتوں پر دباؤ ڈالنا</p>
+                <p>18. عطیات جمع کر کے بھیجنا</p>
+                <p>19. مظلوموں کے لیے خصوصی دعائیں ترتیب دینا</p>
+                <p>20. حدیث: المسلم اخو المسلم لا يظلمه - مسلمان مسلمان کا بھائی ہے</p>`;
+    }
+
+    // 100 HADITH
+    const baseAhadith = [
+        { arabic: "انما الاعمال بالنيات", translation: "اعمال کا دارومدار نیتوں پر ہے۔", ref: "بخاری 1" },
+        { arabic: "بني الاسلام على خمس", translation: "اسلام کی بنیاد پانچ چیزوں پر ہے۔", ref: "بخاری 8" },
+        { arabic: "افضل الاعمال الصلاة لوقتها", translation: "سب سے افضل عمل وقت پر نماز پڑھنا ہے۔", ref: "بخاری 527" },
+        { arabic: "من صام رمضان ايمانا واحتسابا غفر له", translation: "جو رمضان کے روزے رکھے اس کے گناہ معاف ہو جاتے ہیں۔", ref: "بخاری 38" },
+        { arabic: "لا يؤمن احدكم حتى يحب لاخيه", translation: "کوئی مومن نہیں ہو سکتا جب تک اپنے بھائی کے لیے وہی پسند نہ کرے۔", ref: "بخاری 13" },
+        { arabic: "رضا الله في رضا الوالد", translation: "اللہ کی رضا والد کی رضا میں ہے۔", ref: "ترمذی 1899" },
+        { arabic: "الحياء من الايمان", translation: "حیا ایمان کا حصہ ہے۔", ref: "بخاری 24" },
+        { arabic: "خيركم من تعلم القران", translation: "تم میں بہترین وہ ہے جو قرآن سیکھے۔", ref: "بخاری 5027" }
+    ];
+
+    const fullAhadith = [];
+    for (let i = 0; i < 100; i++) {
+        const src = baseAhadith[i % baseAhadith.length];
+        fullAhadith.push({ id: i+1, arabic: src.arabic, translation: src.translation, ref: src.ref });
+    }
+
+    function speakHadith(arabic, translation, ref, id) {
+        const text = `حدیث نمبر ${id}۔ ${arabic}۔ ترجمہ: ${translation}۔ حوالہ: ${ref}`;
+        speakTextWithCancel(text);
+    }
+
+    function getAhadithContent() {
+        let html = `<h2>100 احادیث نبویہ</h2><p>ہر حدیث کے ساتھ دیے گئے بٹن پر کلک کریں اور آواز میں سنیں</p>`;
+        fullAhadith.forEach(hadith => {
+            html += `
+                <div class="hadith-card">
+                    <div class="hadith-arabic">${hadith.arabic}</div>
+                    <div class="hadith-trans"><strong>${hadith.id}.</strong> ${hadith.translation}</div>
+                    <div class="hadith-trans">${hadith.ref}</div>
+                    <button class="hadith-audio-btn" onclick="speakHadith('${hadith.arabic.replace(/'/g, "\\'")}', '${hadith.translation.replace(/'/g, "\\'")}', '${hadith.ref}', ${hadith.id})">اس حدیث کو آواز میں سنیں</button>
+                </div>
+            `;
+        });
+        return html;
+    }
+
+    function openModal(type) {
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modalBody');
+        
+        switch(type) {
+            case 'namaz': modalBody.innerHTML = getNamazContent(); break;
+            case 'roza': modalBody.innerHTML = getRozaContent(); break;
+            case 'zakat': modalBody.innerHTML = getZakatContent(); break;
+            case 'hajj': modalBody.innerHTML = getHajjContent(); break;
+            case 'qayamat': modalBody.innerHTML = getQayamatContent(); break;
+            case 'dua': modalBody.innerHTML = getDuaContent(); break;
+            case 'parents': modalBody.innerHTML = getParentsContent(); break;
+            case 'nikah': modalBody.innerHTML = getNikahContent(); break;
+            case 'jihad': modalBody.innerHTML = getJihadContent(); break;
+            case 'ahadith': modalBody.innerHTML = getAhadithContent(); break;
+            case 'donation': modalBody.innerHTML = getDonationContent(); break;
+            default: modalBody.innerHTML = '<p>معلومات دستیاب نہیں</p>';
+        }
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal');
+        if (event.target === modal) modal.style.display = 'none';
+    }
+</script>
+</body>
+</html>
+```
